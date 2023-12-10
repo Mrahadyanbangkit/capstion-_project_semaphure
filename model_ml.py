@@ -120,15 +120,13 @@ model = tf.keras.models.Sequential([
     tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(512, activation='relu'),
     tf.keras.layers.Dropout(0.5),
-    tf.keras.layers.Dense(256, activation='relu'),
-    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(128, activation='relu'),
     tf.keras.layers.Dense(26, activation='softmax')
 ])
 class myCallback(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs={}):
-      if logs.get('accuracy') > 0.98:
-          print("\nakurasi sudah diatas 98%")
+      if logs.get('accuracy') > 0.96:
+          print("\nakurasi sudah diatas 96%")
           self.model.stop_training = True
 callbacks = myCallback()
 model.summary()
@@ -199,34 +197,3 @@ history = model.fit(train_generator, epochs=25, validation_data=validation_gener
 # history = model.fit(train_generator, epochs=5, steps_per_epoch=20, validation_data = validation_generator, verbose = 1, validation_steps=3)
 
 model.evaluate(validation_generator)
-
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.inception_v3 import preprocess_input
-import numpy as np
-
-def load_and_preprocess_image(image_path):
-    img = image.load_img(image_path, target_size=(150, 150))
-    img_array = image.img_to_array(img)
-    img_array = preprocess_input(img_array)
-    return img_array
-
-import matplotlib.pyplot as plt
-# Melakukan prediksi pada gambar
-test_image_path = '/content/sample_data/semaphore_h.jpeg'
-test_image = load_and_preprocess_image(test_image_path)
-test_image = np.expand_dims(test_image, axis=0)
-predictions = model.predict(test_image)
-
-# Menampilkan hasil prediksi dan gambar
-predicted_class = np.argmax(predictions)
-predicted_letter = chr(predicted_class + ord("A"))
-
-# Menampilkan gambar
-img = image.load_img(test_image_path)
-plt.imshow(img)
-plt.axis('off')
-plt.title(f'Predicted Class: {predicted_letter}')
-plt.show()
-
-from google.colab import drive
-drive.mount('/content/drive')
