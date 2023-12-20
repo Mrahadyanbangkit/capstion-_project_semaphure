@@ -18,10 +18,18 @@ We have modeled 26 classes corresponding to each letter of the alphabet. The dat
 
   **Model Architecture:**
   
-   - Input Layer:  
+   - Input Layer :  
      Image data representing semaphore representations.
    - Convolutional Layers:  
      Utilize convolutional layers to capture spatial features.
+   - Pooling Layers :  
+     Implement pooling layers for downsampling and feature selection.
+   - Flatten Layer :  
+     Flatten the output to feed into a dense layer.
+   - Dense Layers :  
+     Fully connected layers for classification.
+   - Output Layer :  
+     26 nodes representing each letter of the alphabe
   
 
 
