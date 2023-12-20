@@ -30,6 +30,9 @@ We have modeled 26 classes corresponding to each letter of the alphabet. The dat
      Fully connected layers for classification.
    - Output Layer :  
      26 nodes representing each letter of the alphabe
+
+
+The notebooks that we use can be accessed in [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1y6WgvWIS6GivMgv8crTgY6gZE9Kg_hmy?usp=sharing) 
   
 
 
