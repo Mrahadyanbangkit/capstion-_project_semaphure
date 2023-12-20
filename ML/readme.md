@@ -19,7 +19,9 @@ We have modeled 26 classes corresponding to each letter of the alphabet. The dat
   **Model Architecture:**
   
    ### - Input Layer:
-   Image data representing semaphore representations.
+   *Image data representing semaphore representations.
+   ### - Convolutional Layers:
+   *Utilize convolutional layers to capture spatial features.
   
 
 
