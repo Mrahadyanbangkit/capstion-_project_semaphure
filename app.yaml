@@ -1,0 +1,16 @@
+runtime: python39
+entrypoint: gunicorn -b :$PORT main:app
+
+env_variables:
+  BUCKET_NAME: "semaphore-app"
+
+handlers:
+- url: /
+  static_files: Semaphore-Detection-API/main.py
+  upload: Semaphore-Detection-API/main.py
+
+- url: /(.*)
+  static_files: Semaphore-Detection-API/main.py
+  upload: Semaphore-Detection-API/(.*)
+  secure: always
+  redirect_http_response_code: 301
