@@ -17,6 +17,9 @@ In Semaphore Alphabet Classification, we use a [Convolutional Neural Network (CN
 We have modeled 26 classes corresponding to each letter of the alphabet. The dataset comprises images of semaphore signals representing each letter.The dataset comprises images of semaphore signals representing each letter. We split the dataset into training (80%) and testing (20%) sets to build and validate the model.
 
   **Model Architecture:**
+
+  - Input Layer:
+    Image data representing semaphore representations.
   
 
 
