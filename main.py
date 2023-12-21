@@ -16,7 +16,7 @@ def allowed_file(filename):
 
 
 # Load the pre-trained semaphore model
-model_path = 'model_ml.h5'
+model_path = 'ML/model_ml.h5'
 model = load_model(model_path)
 
 # Semaphore classes
