@@ -34,19 +34,8 @@ def preprocess_image(image_path):
 
 
 # Route for semaphore image classification
-@app.route('/')
-@app.route('/classify_semaphore', methods=['GET', 'POST'])
-
+@app.route('/classify_semaphore', methods=['POST'])
 def classify_semaphore():
-     if request.method == 'GET':
-        return jsonify({
-            "status": {
-                "code": 200,
-                "message": "Welcome to the Semaphore Classification API. Upload an image to classify.",
-            },
-            "data": None,
-        }), 200
-         
     if 'image' not in request.files:
         response = \
             {
