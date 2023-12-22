@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
-import os
 from PIL import Image
 import numpy as np
-import tensorflow
+from tensorflow import keras
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
+import tensorflow as tf 
+import os
 
 app = Flask(__name__)
 app.config['ALLOWED_EXTENSIONS'] = set(['png', 'jpg', 'jpeg'])
@@ -16,8 +17,8 @@ def allowed_file(filename):
 
 
 # Load the pre-trained semaphore model
-model_path = 'model_ml.h5'
-model = load_model(model_path)
+model = keras.models.load_model('model_ml.h5')
+# model = load_model(model_path)
 
 # Semaphore classes
 classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
@@ -34,8 +35,19 @@ def preprocess_image(image_path):
 
 
 # Route for semaphore image classification
-@app.route('/classify_semaphore', methods=['POST'])
+@app.route('/')
+@app.route('/classify_semaphore', methods=['GET', 'POST'])
+
 def classify_semaphore():
+    if request.method == 'GET':
+        return jsonify({
+            "status": {
+                "code": 200,
+                "message": "Welcome to the Semaphore Classification API. Upload an image to classify.",
+            },
+            "data": None,
+        }), 200
+        
     if 'image' not in request.files:
         response = \
             {
@@ -101,11 +113,9 @@ def classify_semaphore():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
-
-
-
-
+    app.run(debug=True,
+            host="0.0.0.0",
+            port=int(os.environ.get("PORT",8080)))
 # @app.route('/')
 # def index():
 #     return jsonify({
